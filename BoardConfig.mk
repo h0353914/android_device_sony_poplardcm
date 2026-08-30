@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/sony/poplar
+DEVICE_PATH := device/sony/poplardcm
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 5242880000
@@ -17,7 +17,7 @@ include device/sony/yoshino-common/BoardConfigCommon.mk
 TARGET_SCREEN_DENSITY := 430
 
 # Kernel
-TARGET_KERNEL_CONFIG += sony/poplar.config
+TARGET_KERNEL_CONFIG += sony/poplar_dcm.config
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -27,4 +27,4 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/fstab.qcom
 
 # Inherit vendor board configs
-include vendor/sony/poplar/BoardConfigVendor.mk
+include vendor/sony/poplardcm/BoardConfigVendor.mk

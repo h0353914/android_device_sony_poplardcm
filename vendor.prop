@@ -2,10 +2,10 @@
 bluetooth.device.default_name=Xperia XZ1
 
 # MiscTA
-ro.semc.product.model=G8342
+ro.semc.product.model=SO-01K
 ro.semc.version.fs=GENERIC
-ro.semc.version.fs_revision=47.2.A.11.228
-ro.semc.version.sw=1307-7471
-ro.semc.version.sw_revision=47.2.A.11.228
+ro.semc.version.fs_revision=47.2.B.5.38
+ro.semc.version.sw=1307-7479
+ro.semc.version.sw_revision=47.2.B.5.38
 ro.semc.version.sw_type=user
-ro.semc.version.sw_variant=GLOBALDS-LTE4D
+ro.semc.version.sw_variant=DOCOMO-LTECA

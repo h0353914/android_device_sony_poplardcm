@@ -9,3 +9,10 @@ prebuilt_etc {
     soc_specific: true,
     ramdisk_available: true,
 }
+
+prebuilt_etc {
+    name: "init.target.nfc.rc",
+    src: "init.target.nfc.rc",
+    sub_dir: "init",
+    vendor: true,
+}

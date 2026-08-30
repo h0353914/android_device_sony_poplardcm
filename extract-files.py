@@ -27,7 +27,7 @@ blob_fixups: blob_fixups_user_type = {
 }  # fmt: skip
 
 module = ExtractUtilsModule(
-    'poplar',
+    'poplardcm',
     'sony',
     blob_fixups=blob_fixups,
     namespace_imports=namespace_imports,

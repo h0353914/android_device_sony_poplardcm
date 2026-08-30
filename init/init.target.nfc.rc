@@ -1,0 +1,24 @@
+on post-fs-data
+    chown nfc nfc /dev/cxd224x-i2c
+    chown nfc nfc /dev/bd7602-i2c
+
+    start vendor.snfcboot
+    start vendor.nfc_hal_service
+
+# CXD NFC firmware download daemon
+service vendor.snfcboot /vendor/bin/snfcboot
+    class core
+    user nfc
+    group nfc
+    oneshot
+    disabled
+
+# Sony CXD NFC HAL
+service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service-cxd22xx
+    class hal
+    user nfc
+    group nfc
+    disabled
+
+on property:init.svc.vendor.nfc_hal_service=running
+    start vendor.snfcboot
