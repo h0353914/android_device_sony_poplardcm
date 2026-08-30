@@ -1,1 +1,1 @@
-require board=poplar|G8341|G8342|G8343
+require board=poplar|SO-01K

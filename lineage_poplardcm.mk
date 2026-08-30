@@ -16,14 +16,14 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from device makefile
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
-PRODUCT_NAME := lineage_poplar
-PRODUCT_DEVICE := poplar
+PRODUCT_NAME := lineage_poplardcm
+PRODUCT_DEVICE := poplardcm
 PRODUCT_MANUFACTURER := Sony
-PRODUCT_BRAND := Sony
-PRODUCT_MODEL := G8342
+PRODUCT_BRAND := docomo
+PRODUCT_MODEL := SO-01K
 
 PRODUCT_GMS_CLIENTID_BASE := android-sonymobile
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildDesc="G8342-user 9 47.2.A.11.228 3311891731 release-keys" \
-    BuildFingerprint=Sony/G8342/G8342:9/47.2.A.11.228/3311891731:user/release-keys
+    BuildDesc="SO-01K-user 9 47.2.B.5.38 4216219063 release-keys" \
+    BuildFingerprint=docomo/SO-01K/SO-01K:9/47.2.B.5.38/4216219063:user/release-keys
