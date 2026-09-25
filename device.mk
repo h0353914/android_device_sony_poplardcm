@@ -28,7 +28,15 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     fstab.qcom.ramdisk \
-    init.target.nfc.rc
+    init.target.nfc.rc \
+    init.felica_cfg.sh
+
+# FeliCa（Osaifu-Keitai）各營運商設定：發行者識別碼、憑證、金鑰各不相同，
+# 全部安裝到 /vendor/etc/felica/<variant>/，開機時依 oem 分割區的 ro.somc.customerid
+# 選出對應目錄 bind mount 到 /vendor/etc/felica（見 init.target.nfc.rc、init.felica_cfg.sh）。
+FELICA_CFG_VARIANTS := docomo softbank kddi
+PRODUCT_COPY_FILES += $(foreach v,$(FELICA_CFG_VARIANTS),$(foreach f,common.cfg mfm.cfg mfs.cfg,\
+    $(LOCAL_PATH)/configs/felica/$(v)/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/felica/$(v)/$(f)))
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \

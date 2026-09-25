@@ -15,3 +15,19 @@ service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service-c
     class hal
     user nfc
     group nfc
+
+# FeliCa（Osaifu-Keitai）設定依營運商而異：發行者識別碼、憑證、金鑰都不同，
+# 而且必須與晶片內已寫入的識別碼一致。oem 分割區由 fstab.qcom 唯讀掛載在 /mnt/vendor/oem_cust
+# （不掛在 /oem：PackageManager 會掃描 /oem/app、/oem/overlay，把原廠營運商 app 與 overlay 裝進系統），
+# vendor.felica_cfg 讀出其中 cust.prop 的 ro.somc.customerid 並設定 vendor.felica.variant，
+# 再把對應的 /vendor/etc/felica/<variant> bind mount 到 /vendor/etc/felica。
+# 必須在 zygote 啟動（應用程式讀取設定）之前完成，所以放在 post-fs-data。
+on post-fs-data
+    exec_start vendor.felica_cfg
+    mount none /vendor/etc/felica/${vendor.felica.variant} /vendor/etc/felica bind
+
+service vendor.felica_cfg /vendor/bin/init.felica_cfg.sh
+    user root
+    group root
+    disabled
+    oneshot

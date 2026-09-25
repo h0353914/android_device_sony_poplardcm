@@ -104,9 +104,6 @@ vendor/usr/idc/clearpad.idc
 vendor/bin/hw/android.hardware.nfc@1.2-service-cxd22xx|2a87e9ad6259d95b20b57fbdac8f302c99c4208b
 
 # NFC
-system/etc/felica/common.cfg:vendor/etc/felica/common.cfg
-system/etc/felica/mfm.cfg:vendor/etc/felica/mfm.cfg
-system/etc/felica/mfs.cfg:vendor/etc/felica/mfs.cfg
 vendor/bin/snfcboot
 vendor/etc/libnfc-cxd-224x02010010.conf
 vendor/etc/libnfc-cxd-224x02310011.conf

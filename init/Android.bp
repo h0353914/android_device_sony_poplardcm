@@ -16,3 +16,9 @@ prebuilt_etc {
     sub_dir: "init",
     vendor: true,
 }
+
+sh_binary {
+    name: "init.felica_cfg.sh",
+    src: "init.felica_cfg.sh",
+    soc_specific: true,
+}

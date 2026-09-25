@@ -1,0 +1,29 @@
+# 依 oem 分割區的 ro.somc.customerid 選擇 FeliCa 營運商設定（見 poplardcm init.felica_cfg.sh）
+type init-felica-cfg-sh, domain;
+type init-felica-cfg-sh_exec, exec_type, vendor_file_type, file_type;
+
+vendor_internal_prop(vendor_felica_prop)
+
+init_daemon_domain(init-felica-cfg-sh)
+
+# fstab 把 oem 分割區掛載到 /mnt/vendor/oem_cust（fs_mgr 會建立該掛載點，
+# 對 mnt_vendor_file 的 mounton 已由既有規則允許），並把 /vendor/etc/felica/<variant>
+# bind mount 到 /vendor/etc/felica
+allow init mnt_vendor_file:dir create_dir_perms;
+allow init vendor_configs_file:dir mounton;
+
+allow init-felica-cfg-sh { vendor_shell_exec vendor_toolbox_exec }:file rx_file_perms;
+
+# 讀取 fstab 以 context=oemfs 唯讀掛載在 /mnt/vendor/oem_cust 的 oem 分割區
+allow init-felica-cfg-sh mnt_vendor_file:dir search;
+allow init-felica-cfg-sh oemfs:dir r_dir_perms;
+allow init-felica-cfg-sh oemfs:file r_file_perms;
+
+set_prop(init-felica-cfg-sh, vendor_felica_prop)
+
+# vendor rc 的 ${vendor.felica.variant} 屬性展開是以 vendor_init 讀取
+get_prop(vendor_init, vendor_felica_prop)
+
+# installd 開機時會對 /proc/mounts 內每個 /dev/block 掛載做 quota 探測（失敗即略過），
+# oem 以 context=oemfs 掛載不屬於 labeledfs，探測被拒屬預期行為，不需記錄
+dontaudit installd oemfs:filesystem quotaget;
