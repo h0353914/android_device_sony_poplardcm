@@ -1,0 +1,23 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// Signer allowlist authorizing com.felicanetworks.mfc to use the ported
+// FeliCa/osaifu-keitai extension adapter (see packages/apps/Nfc's
+// NfceeAccessControl / FelicaService). Extracted from real SO-01K NTT
+// DoCoMo JP 47.2.B.5.38 factory firmware, byte-identical content to what
+// Sony ships at the same path.
+prebuilt_etc {
+    name: "felica_access.xml",
+    src: "felica_access.xml",
+}
+
+// Shared-library permissions declaration for com.felicanetworks.felica,
+// registering it with PackageManager so apps' <uses-library> tags resolve.
+// Installs to /system/etc/permissions/.
+prebuilt_etc {
+    name: "com.felicanetworks.felica.xml",
+    src: "com.felicanetworks.felica.xml",
+    sub_dir: "permissions",
+}

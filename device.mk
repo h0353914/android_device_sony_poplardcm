@@ -31,6 +31,15 @@ PRODUCT_PACKAGES += \
     init.target.nfc.rc \
     init.felica_cfg.sh
 
+# FeliCa
+PRODUCT_PACKAGES += \
+    felica_access.xml \
+    com.felicanetworks.felica.xml \
+    libnfc_hal_shim
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/nfc/com.felicanetworks.felica.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/com.felicanetworks.felica.jar
+
 # FeliCa（Osaifu-Keitai）各營運商設定：發行者識別碼、憑證、金鑰各不相同，
 # 全部安裝到 /vendor/etc/felica/<variant>/，開機時依 oem 分割區的 ro.somc.customerid
 # 選出對應目錄 bind mount 到 /vendor/etc/felica（見 init.target.nfc.rc、init.felica_cfg.sh）。

@@ -101,7 +101,7 @@ system/somc/touch/images/splash.png:vendor/etc/touch/images/splash.png
 vendor/usr/idc/clearpad.idc
 
 # NFC - from style3lm - SKQ1.211103.001
-vendor/bin/hw/android.hardware.nfc@1.2-service-cxd22xx|2a87e9ad6259d95b20b57fbdac8f302c99c4208b
+vendor/bin/hw/android.hardware.nfc@1.2-service-cxd22xx|2a87e9ad6259d95b20b57fbdac8f302c99c4208b|b7e90f79bc1f84231107458379314e9978ff3755
 
 # NFC
 vendor/bin/snfcboot

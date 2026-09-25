@@ -1,0 +1,24 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// 由 extract-files.py 的 blob_fixup 加進 Sony NFC HAL 的 DT_NEEDED，見 NfcHalShim.cpp。
+cc_library_shared {
+    name: "libnfc_hal_shim",
+    vendor: true,
+    compile_multilib: "64",
+    srcs: ["NfcHalShim.cpp"],
+    shared_libs: [
+        "android.hardware.nfc@1.0",
+        "android.hardware.nfc@1.1",
+        "android.hardware.nfc@1.2",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
