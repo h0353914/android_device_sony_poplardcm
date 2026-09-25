@@ -22,3 +22,14 @@ service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service-c
 
 on property:init.svc.vendor.nfc_hal_service=running
     start vendor.snfcboot
+
+# 依 oem 分割區的營運商識別碼選 FeliCa 設定，bind mount 到 /vendor/etc/felica（見 init.felica_cfg.sh）
+on post-fs-data
+    exec_start vendor.felica_cfg
+    mount none /vendor/etc/felica/${vendor.felica.variant} /vendor/etc/felica bind
+
+service vendor.felica_cfg /vendor/bin/init.felica_cfg.sh
+    user root
+    group root
+    disabled
+    oneshot
