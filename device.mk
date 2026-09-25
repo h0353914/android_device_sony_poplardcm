@@ -31,6 +31,15 @@ PRODUCT_PACKAGES += \
     init.target.nfc.rc \
     init.felica_cfg.sh
 
+# FeliCa
+PRODUCT_PACKAGES += \
+    felica_access.xml \
+    com.felicanetworks.felica.xml \
+    libnfc_hal_shim
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/nfc/com.felicanetworks.felica.jar:$(TARGET_COPY_OUT_SYSTEM)/framework/com.felicanetworks.felica.jar
+
 # FeliCa 各營運商設定，開機時依 oem 分割區選一份 bind mount 到 /vendor/etc/felica
 FELICA_CFG_VARIANTS := docomo softbank kddi
 PRODUCT_COPY_FILES += $(foreach v,$(FELICA_CFG_VARIANTS),$(foreach f,common.cfg mfm.cfg mfs.cfg,\

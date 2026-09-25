@@ -14,6 +14,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    'device/sony/poplardcm',
     'device/sony/yoshino-common',
     'hardware/qcom-caf/msm8998',
     'vendor/sony/yoshino-common',
@@ -22,6 +23,8 @@ namespace_imports = [
 blob_fixups: blob_fixups_user_type = {
     ('vendor/bin/hw/fpc_fingerprint@2.1_HIDL-service', 'vendor/lib64/lib_fpc_tac_shared.so'): blob_fixup()
         .replace_needed('libprotobuf-c.so', 'libprotobuf-c-idd.so'),
+    'vendor/bin/hw/android.hardware.nfc@1.2-service-cxd22xx': blob_fixup()
+        .add_needed('libnfc_hal_shim.so'),
     'vendor/usr/idc/clearpad.idc': blob_fixup()
         .regex_replace('/system/somc', '/vendor/etc'),
 }  # fmt: skip
